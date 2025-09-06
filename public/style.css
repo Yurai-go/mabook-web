@@ -1,0 +1,36 @@
+/* Custom styles for the navigation bar */
+.custom-nav {
+    background-color: #173F25;
+    color: white;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter Light', serif;
+    padding: 0 3rem;
+}
+
+/* Custom style for the logo to control its size */
+.nav-logo img {
+    /* Change these values to whatever size you need! */
+    height: 6rem; /* 80px */
+    width: 6rem;  /* 80px */
+}
+/* Add this to your style.css file */
+
+/* This styles the container link (the <a> tag) */
+.custom-feedback-logo {
+  /* This is the equivalent of Tailwind's 'flex-shrink-0' */
+  flex-shrink: 0;
+}
+
+/* This styles the image inside the link */
+.custom-feedback-logo img {
+  /* This sets a specific height, replacing the invalid 'h-[]' */
+  height: 6rem; /* 56px */
+
+  /* This is the equivalent of Tailwind's 'w-auto' */
+  width: auto;
+
+  /* This is the equivalent of Tailwind's 'ml-auto' */
+  margin-left: auto;
+}
