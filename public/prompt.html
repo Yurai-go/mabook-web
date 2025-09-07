@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style1.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -158,54 +160,71 @@
         }
     </style>
 </head>
-<body class="font-sans bg-classic-cream min-h-screen p-5 flex flex-col items-center justify-center">
-    <div class="max-w-4xl mx-auto">
-        <div class="text-center text-classic-green mb-10">
-            <p class="typing-animation font-sans text-[25.7px] mb-4">
-                “A Book’s True Worth is Hidden in its Wisdom, <strong class="font-bold">NOT</strong> its Cover”
-            </p>
-            <h2 class="font-serif text-[42.6px] font-bold uppercase tracking-widest">
-                Begin by Asking...
-            </h2>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    </head>
+<body class="font-sans bg-classic-cream overflow-hidden">
 
-        <div class="mb-8">
-            <div class="w-full bg-white border border-classic-green/30 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
-                <textarea
-                    class="search-input w-full flex-grow bg-transparent text-classic-green placeholder-neutral-500 text-base leading-relaxed focus:outline-none"
-                    id="promptInput"
-                    placeholder="Ask me anything about books you'd like to read..."
-                    rows="1"></textarea>
-                <div class="flex items-center justify-between mt-3">
-                    <div class="flex items-center space-x-2">
-                        <button id="byHighlightsBtn" class="search-option-btn active">By Highlights</button>
-                        <button id="bySynopsisBtn" class="search-option-btn">By Synopsis</button>
+    <div id="navbar-container"></div>
+    
+   <main class="min-h-screen flex flex-col items-center justify-center px-5">
+        <div class="flex-grow flex items-center">
+            <div class="max-w-4xl mx-auto w-full">
+                <div class="text-center text-classic-green mb-10">
+                    <p class="typing-animation font-sans text-[25.7px] mb-4">
+                        “A Book’s True Worth is Hidden in its Wisdom, <strong class="font-bold">NOT</strong> its Cover”
+                    </p>
+                    <h2 class="font-serif text-[42.6px] font-bold uppercase tracking-widest">
+                        Begin by Asking...
+                    </h2>
+                </div>
+        
+                <div class="mb-8">
+                    <div class="w-full bg-white border border-classic-green/30 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                        <textarea
+                            class="search-input w-full flex-grow bg-transparent text-classic-green placeholder-neutral-500 text-base leading-relaxed focus:outline-none"
+                            id="promptInput"
+                            placeholder="Ask me anything about books you'd like to read..."
+                            rows="1"></textarea>
+                        <div class="flex items-center justify-between mt-3">
+                            <div class="flex items-center space-x-2">
+                                <button id="byHighlightsBtn" class="search-option-btn active">By Highlights</button>
+                                <button id="bySynopsisBtn" class="search-option-btn">By Synopsis</button>
+                            </div>
+                            <button
+                                class="send-btn flex-shrink-0 w-10 h-10 bg-neutral-100 text-neutral-400 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 disabled:bg-neutral-100 disabled:text-neutral-300 disabled:cursor-not-allowed"
+                                id="sendBtn" disabled>
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                    <button
-                        class="send-btn flex-shrink-0 w-10 h-10 bg-neutral-100 text-neutral-400 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 disabled:bg-neutral-100 disabled:text-neutral-300 disabled:cursor-not-allowed"
-                        id="sendBtn" disabled>
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    </button>
+                </div>
+                <div class="loading hidden text-center text-classic-green text-lg my-5" id="loading">
+                    <div class="book-container">
+                        <div class="book">
+                            <div class="book__page"></div>
+                            <div class="book__page"></div>
+                            <div class="book__page"></div>
+                        </div>
+                    </div>
+                    <p>AI is analyzing your request and finding the best book recommendations...</p>
+                </div>
+        
+                <div class="results-container hidden" id="resultsContainer">
                 </div>
             </div>
         </div>
-        <div class="loading hidden text-center text-classic-green text-lg my-5" id="loading">
-            <div class="book-container">
-                <div class="book">
-                    <div class="book__page"></div>
-                    <div class="book__page"></div>
-                    <div class="book__page"></div>
-                </div>
-            </div>
-            <p>AI is analyzing your request and finding the best book recommendations...</p>
-        </div>
-
-        <div class="results-container hidden" id="resultsContainer">
-        </div>
-    </div>
+    </main>
 
     <script src="prompt.js"></script>
+    <script src="componentLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('nav.html', 'navbar-container');
+        });
+    </script>
 </body>
 </html>
