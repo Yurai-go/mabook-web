@@ -22,6 +22,7 @@ class BookRecommendationSystem {
         this.API_BASE_URL = '';
         this.initializeEventListeners();
         this.checkServerHealth();
+        this.initializeFromURL();
     }
 
     initializeEventListeners() {
@@ -58,6 +59,32 @@ class BookRecommendationSystem {
             this.elements.bySynopsisBtn.classList.add('active');
             this.elements.byHighlightsBtn.classList.remove('active');
         });
+    }
+
+    initializeFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get('query');
+        const searchTypeParam = params.get('searchType');
+
+        if (query) {
+            this.elements.promptInput.value = query;
+            // Trigger the input event to resize textarea and enable send button
+            this.elements.promptInput.dispatchEvent(new Event('input'));
+        }
+
+        if (searchTypeParam === 'synopsis') {
+            this.elements.bySynopsisBtn.click();
+        } else {
+            this.elements.byHighlightsBtn.click();
+        }
+
+        // If there's a query, automatically trigger the search
+        if (query) {
+            // A small delay to ensure the UI updates before search starts
+            setTimeout(() => {
+                this.handleSearch();
+            }, 100);
+        }
     }
 
     async handleSearch() {
