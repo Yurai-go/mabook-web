@@ -340,7 +340,8 @@ class BookRecommendationSystem {
         try {
             const health = await this._callBackendAPI('/health', null, 'GET');
             this.log('Server health check:', health);
-            if (!health.env.hasGroqKey || !health.env.hasSupabaseUrl || !health.env.hasSupabaseKey) {
+            // --- FIX: Check for the new environment variable keys from the updated backend ---
+            if (!health.env.hasGroqKey1 || !health.env.hasGroqKey2 || !health.env.hasSupabaseUrl || !health.env.hasSupabaseKey) {
                 this.showError('Server configuration incomplete.');
             }
         } catch (error) {
@@ -455,7 +456,7 @@ class BookRecommendationSystem {
                 outputFormat: `
 - Your response MUST be a valid JSON object.
 - The JSON object must have a single key: "recommendations".
-- The value must be an array of objects, each with an "id" field.
+- The value must be an array of objects, once with an "id" field.
 - Each "id" must match exactly one of the synopsis IDs provided.
 - Order by relevance (best match first).
 - Example: {"recommendations": [{"id": "synopsis_3"}, {"id": "synopsis_7"}, {"id": "synopsis_1"}]}
