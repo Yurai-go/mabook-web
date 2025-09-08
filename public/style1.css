@@ -61,3 +61,10 @@ body {
     width: 100%;
     z-index: 1000;
 }
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .custom-nav {
+        padding: 0 1.5rem;
+    }
+}

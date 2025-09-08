@@ -8,25 +8,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style1.css">
+
     <style>
         /* --- Core Theme & Typography --- */
         body {
-            /* Using Inter for body text for its excellent readability */
             font-family: 'Inter', sans-serif;
-            /* Using the specified cream color for a warm, classic background */
             background-color: #FDF9F6;
-            /* The primary text color is the deep, elegant green */
             color: #173F25;
+            padding-top: 80px; 
         }
         
         h1, h2, h3, h4, h5, h6 {
-            /* Using Playfair Display for all headings to create a classic, literary feel */
             font-family: 'Playfair Display', serif;
         }
 
         /* --- Animations --- */
-
-        /* Subtle pulse animation for the hero icon */
         @keyframes pulse-subtle {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -35,7 +33,6 @@
             animation: pulse-subtle 3s ease-in-out infinite;
         }
         
-        /* Scroll-triggered fade-in-up animation */
         .reveal {
             opacity: 0;
             transform: translateY(50px);
@@ -46,7 +43,7 @@
             transform: translateY(0);
         }
 
-        /* --- Interactive 3D Book (Re-skinned for a classic look) --- */
+        /* --- Interactive 3D Book --- */
         .book-container {
             perspective: 1200px;
         }
@@ -69,7 +66,6 @@
         }
         .book-cover {
             transform: translateZ(20px);
-            /* Elegant green gradient for a rich, textured look */
             background: linear-gradient(45deg, #173F25, #2a5d3f);
             display: flex;
             flex-direction: column;
@@ -103,6 +99,8 @@
     </style>
 </head>
 <body class="overflow-x-hidden">
+
+    <div id="navbar-container"></div>
 
     <main>
 
@@ -240,16 +238,43 @@
                 </a>
             </div>
         </section>
+
+        <div class="h-16 bg-[#FDF9F6]"></div> 
+
     </main>
 
-    <footer class="bg-[#FDF9F6] border-t border-[#173F25]/10">
-        <div class="container mx-auto px-6 py-8 text-center text-[#173F25]/50">
-            <p>&copy; 2025 Mabook. All Rights Reserved.</p>
-        </div>
-    </footer>
-
+    <div id="footer-container"></div>
+    
+    <script src="componentLoader.js"></script>
     <script>
-        // JavaScript for scroll-triggered animations (no changes needed here, it's perfect)
+        document.addEventListener('DOMContentLoaded', () => {
+            // This loads the main navbar
+            loadComponent('nav.html', 'navbar-container', () => {
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuText = document.getElementById('menu-text');
+
+                if (mobileMenuButton) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        const isHidden = mobileMenu.classList.contains('hidden');
+                        mobileMenu.classList.toggle('hidden');
+                        menuText.textContent = isHidden ? 'Close' : 'Menu';
+                    });
+                }
+            });
+
+            // This loads the main footer and updates the year
+            loadComponent('footer.html', 'footer-container', () => {
+                const yearSpan = document.getElementById('footer-year');
+                if (yearSpan) {
+                    yearSpan.textContent = new Date().getFullYear();
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        // JavaScript for scroll-triggered animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -257,7 +282,7 @@
                 }
             });
         }, {
-            threshold: 0.15 // Trigger when 15% of the element is visible
+            threshold: 0.15
         });
 
         const revealElements = document.querySelectorAll('.reveal');

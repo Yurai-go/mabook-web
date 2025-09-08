@@ -66,6 +66,12 @@
             typing 3.5s steps(59, end) forwards,
             blink .75s step-end infinite;
         }
+        
+        /* ✅ NEW CLASS FOR RESPONSIVE TEXT */
+        .responsive-quote-text {
+            /* Min size, preferred size, max size */
+            font-size: clamp(1rem, 2.5vw, 1.6rem); /* Adjusts between ~16px and ~25.7px */
+        }
 
         /* --- CSS for New Search Option Buttons (Updated) --- */
         .search-option-btn {
@@ -160,61 +166,55 @@
         }
     </style>
 </head>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    </head>
-<body class="font-sans bg-classic-cream h-screen flex flex-col">
+<body class="font-sans bg-classic-cream min-h-screen flex flex-col">
 
     <div id="navbar-container"></div>
     
-   <main class="flex-grow flex flex-col items-center justify-center px-5">
-        <div class="flex-grow flex items-center">
-            <div class="max-w-4xl mx-auto w-full">
-                <div class="text-center text-classic-green mb-10">
-                    <p class="typing-animation font-sans text-[25.7px] mb-4">
-                        “A Book’s True Worth is Hidden in its Wisdom, <strong class="font-bold">NOT</strong> its Cover”
-                    </p>
-                    <h2 class="font-serif text-[42.6px] font-bold uppercase tracking-widest">
-                        Begin by Asking...
-                    </h2>
-                </div>
-        
-                <div class="mb-8">
-                    <div class="w-full bg-white border border-classic-green/30 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
-                        <textarea
-                            class="search-input w-full flex-grow bg-transparent text-classic-green placeholder-neutral-500 text-base leading-relaxed focus:outline-none"
-                            id="promptInput"
-                            placeholder="Ask me anything about books you'd like to read..."
-                            rows="1"></textarea>
-                        <div class="flex items-center justify-between mt-3">
-                            <div class="flex items-center space-x-2">
-                                <button id="byHighlightsBtn" class="search-option-btn active">By Highlights</button>
-                                <button id="bySynopsisBtn" class="search-option-btn">By Synopsis</button>
-                            </div>
-                            <button
-                                class="send-btn flex-shrink-0 w-10 h-10 bg-neutral-100 text-neutral-400 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 disabled:bg-neutral-100 disabled:text-neutral-300 disabled:cursor-not-allowed"
-                                id="sendBtn" disabled>
-                                <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </button>
+   <main class="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-4xl mx-auto">
+            <div class="text-center text-classic-green mb-8 sm:mb-10">
+                <p class="typing-animation font-sans responsive-quote-text mb-4">
+                    “A Book’s True Worth is Hidden in its Wisdom, <strong class="font-bold">NOT</strong> its Cover”
+                </p>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-widest">
+                    Begin by Asking...
+                </h2>
+            </div>
+    
+            <div class="mb-8">
+                <div class="w-full bg-white border border-classic-green/30 rounded-2xl p-4 flex flex-col justify-between shadow-sm">
+                    <textarea
+                        class="search-input w-full flex-grow bg-transparent text-classic-green placeholder-neutral-500 text-base leading-relaxed focus:outline-none"
+                        id="promptInput"
+                        placeholder="Ask me anything about books you'd like to read..."
+                        rows="1"></textarea>
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="flex items-center space-x-2">
+                            <button id="byHighlightsBtn" class="search-option-btn active">By Highlights</button>
+                            <button id="bySynopsisBtn" class="search-option-btn">By Synopsis</button>
                         </div>
+                        <button
+                            class="send-btn flex-shrink-0 w-10 h-10 bg-neutral-100 text-neutral-400 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 disabled:bg-neutral-100 disabled:text-neutral-300 disabled:cursor-not-allowed"
+                            id="sendBtn" disabled>
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="loading hidden text-center text-classic-green text-lg my-5" id="loading">
-                    <div class="book-container">
-                        <div class="book">
-                            <div class="book__page"></div>
-                            <div class="book__page"></div>
-                            <div class="book__page"></div>
-                        </div>
+            </div>
+            <div class="loading hidden text-center text-classic-green text-lg my-5" id="loading">
+                <div class="book-container">
+                    <div class="book">
+                        <div class="book__page"></div>
+                        <div class="book__page"></div>
+                        <div class="book__page"></div>
                     </div>
-                    <p>AI is analyzing your request and finding the best book recommendations...</p>
                 </div>
-        
-                <div class="results-container hidden" id="resultsContainer">
-                </div>
+                <p>AI is analyzing your request and finding the best book recommendations...</p>
+            </div>
+    
+            <div class="results-container hidden" id="resultsContainer">
             </div>
         </div>
     </main>
