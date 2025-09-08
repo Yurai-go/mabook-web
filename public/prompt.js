@@ -252,14 +252,16 @@ class BookRecommendationSystem {
     }
 
     _createRecommendationHTML(rec, index) {
-        const { title, author, highlight } = rec;
+        const { id, title, author, highlight } = rec;
         return `
             <div class="bg-white rounded-2xl p-6 mb-5 shadow-lg border-l-4 border-classic-green transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl relative">
                 <div class="absolute top-4 right-4 bg-classic-green text-white text-xs px-2 py-1 rounded-full font-semibold">
                     #${index + 1} Best Match
                 </div>
                 <div class="text-base leading-relaxed text-neutral-800 bg-neutral-100 p-4 rounded-lg border-l-4 border-neutral-400 italic mb-4 pr-20">"${this.escapeHtml(highlight)}"</div>
-                <div class="text-xl font-bold text-classic-green mb-2">${this.escapeHtml(title)}</div>
+                
+                <a href="book-details.html?id=${id}" class="text-xl font-bold text-classic-green mb-2 hover:underline">${this.escapeHtml(title)}</a>
+
                 <div class="text-base text-neutral-600 italic">by ${this.escapeHtml(author)}</div>
             </div>
         `;
@@ -294,7 +296,8 @@ class BookRecommendationSystem {
                     id: `highlight_${bookIndex}_${highlightIndex}`,
                     text: highlight,
                     bookTitle: book.title,
-                    bookAuthor: book.author
+                    bookAuthor: book.author,
+                    bookId: book.id // Add this line
                 });
             });
         });
@@ -307,6 +310,7 @@ class BookRecommendationSystem {
             const highlight = allHighlights.find(h => h.id === id);
             if (highlight) {
                 recommendations.push({
+                    id: highlight.bookId, // Add the bookId here
                     title: highlight.bookTitle,
                     author: highlight.bookAuthor,
                     highlight: highlight.text
@@ -318,11 +322,11 @@ class BookRecommendationSystem {
     
     _buildRecommendationsFromSynopsis(selectedIds, books) {
         const recommendations = [];
-        const addedBookTitles = new Set(); // Keep track of book titles already added
+        const addedBookTitles = new Set(); 
 
         for (const id of selectedIds) {
             if (recommendations.length >= 5) {
-                break; // Stop once we have 5 unique recommendations
+                break; 
             }
 
             const index = parseInt(id.split('_')[1]);
@@ -330,9 +334,10 @@ class BookRecommendationSystem {
 
             if (book && !addedBookTitles.has(book.title)) {
                 recommendations.push({
+                    id: book.id, // Add the book.id here
                     title: book.title,
                     author: book.author,
-                    highlight: book.synopsis // 'highlight' property is used for synopsis text
+                    highlight: book.synopsis 
                 });
                 addedBookTitles.add(book.title);
             }
