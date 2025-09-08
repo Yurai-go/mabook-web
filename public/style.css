@@ -520,3 +520,7 @@ body {
         height: 220px;
     }
 }
+
+.home-bookshelf-section .bookshelf-container {
+    max-width: 1540px;
+}
