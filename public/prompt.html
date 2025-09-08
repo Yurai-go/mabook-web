@@ -223,7 +223,8 @@
     <script src="componentLoader.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('nav.html', 'navbar-container');
+            // This now includes the 'initializeNavbar' function to activate the button
+            loadComponent('nav.html', 'navbar-container', initializeNavbar);
         });
     </script>
 </body>

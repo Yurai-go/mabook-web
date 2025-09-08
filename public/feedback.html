@@ -51,19 +51,19 @@
     <div id="footer-placeholder"></div>
 
     <script src="feedback.js"></script>
+   <script src="componentLoader.js"></script>
     <script>
-        // Fetch and insert the navigation bar
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            });
-         // === ADD THIS SCRIPT TO LOAD THE FOOTER ===
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            // This properly loads the navbar AND runs the script to make the button clickable
+            loadComponent('nav.html', 'navbar-placeholder', initializeNavbar);
+
+            // This loads the footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
+        });
     </script>
 </body>
 </html>

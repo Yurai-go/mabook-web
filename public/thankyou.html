@@ -23,13 +23,12 @@
         </div>
     </div>
     
+  <script src="componentLoader.js"></script>
     <script>
-        // Fetch and insert the navigation bar
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            // This properly loads the navbar AND runs the script to make the button clickable
+            loadComponent('nav.html', 'navbar-placeholder', initializeNavbar);
+        });
     </script>
 </body>
 </html>
