@@ -41,7 +41,8 @@ const updateActiveLink = (entries) => {
 
             if (activeLink) {
                 activeLink.classList.add('active');
-                activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // The line below was causing the scroll issue, so it has been removed.
+                // activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
     });

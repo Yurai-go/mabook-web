@@ -91,12 +91,21 @@
     <div id="footer-container"></div>
 
     <script src="componentLoader.js"></script>
-    <script src="policy.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // This loads and initializes the main navbar
-            loadComponent('nav.html', 'navbar-container', initializeNavbar);
+<script src="policy.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // This loads and initializes the main navbar
+        loadComponent('nav.html', 'navbar-container', initializeNavbar);
+        
+        // --- ADD THIS CODE TO LOAD THE FOOTER ---
+        loadComponent('footer.html', 'footer-container', () => {
+            const yearSpan = document.getElementById('footer-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
         });
-    </script>
+        // --- END OF ADDED CODE ---
+    });
+</script>
 </body>
 </html>

@@ -43,7 +43,9 @@ body {
 }
 
 .hero-text {
-    flex: 0 0 auto;
+    /* --- THIS IS THE FIX --- */
+    /* This allows the container to shrink and lets the text wrap. */
+    flex: 1 1 50%;
     text-align: center;
 }
 
@@ -62,8 +64,10 @@ body {
     z-index: -1;
     color: transparent;
     -webkit-text-stroke: 3px #88b988;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translate(10px, 10px);
 }
 
 .hero-text p {
@@ -74,7 +78,8 @@ body {
 
 /* Book Carousel Container */
 .hero-books {
-    flex: 1;
+    /* Made this flexible as well to balance the layout */
+    flex: 1 1 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -495,17 +500,33 @@ body {
 }
 
 @media (max-width: 768px) {
+    .page-container {
+        padding: 0 1rem; /* Reduce page padding on mobile */
+    }
+
     .hero-banner {
-        padding: 3rem 2rem;
+        padding: 3rem 1.5rem; /* Reduce banner padding */
+        margin-top: 1.5rem;
+    }
+    
+    .hero-text {
+        width: 100%; 
     }
 
     .hero-text h1 {
         font-size: 4rem;
     }
 
+    /* --- UPDATED SHADOW RULE (Mobile) --- */
     .hero-text h1::before {
-        top: 10px;
-        left: 10px;
+        -webkit-text-stroke: 0.05em #88b988;
+        
+        /* This transform creates a scalable offset */
+        transform: translate(0.1em, 0.1em);
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
     }
 
     .carousel-container {
@@ -517,7 +538,46 @@ body {
     }
 
     .book-item img {
-        height: 220px;
+        max-height: 210px;
+    }
+
+    .search-section {
+        margin: 5rem 0;
+    }
+    
+    #animated-quote {
+        font-size: 1rem !important;
+    }
+
+    .search-section h2 {
+        font-size: 1.8rem;
+        letter-spacing: 0.1em;
+    }
+
+    .recommendation-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .category h3 {
+        font-size: 2rem;
+    }
+
+    .category p {
+        font-size: 1rem;
+    }
+    
+    .cta-section {
+        margin-top: 8rem;
+        margin-bottom: 6rem;
+    }
+
+    .cta-button {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+    }
+
+    .cta-text {
+        font-size: 1.1rem;
     }
 }
 

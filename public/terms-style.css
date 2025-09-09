@@ -95,3 +95,25 @@ body {
 .policy-content section:last-of-type {
     margin-bottom: 35vh; /* vh stands for viewport height */
 }
+
+/* --- NEW: Responsive Styles for Mobile --- */
+@media (max-width: 768px) {
+    .policy-layout {
+        grid-template-columns: 1fr; /* Stack to a single column */
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .policy-sidebar {
+        position: static; /* Remove sticky positioning on mobile */
+        height: auto;
+    }
+
+    .policy-content h2 {
+        font-size: 1.5rem; /* Adjust heading size for readability */
+    }
+
+    .container h1 {
+        font-size: 2.5rem; /* Adjust main page title size */
+    }
+}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Book Recommendations</title>
 
+    <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
@@ -67,12 +68,6 @@
             blink .75s step-end infinite;
         }
         
-        /* ✅ NEW CLASS FOR RESPONSIVE TEXT */
-        .responsive-quote-text {
-            /* Min size, preferred size, max size */
-            font-size: clamp(1rem, 2.5vw, 1.6rem); /* Adjusts between ~16px and ~25.7px */
-        }
-
         /* --- CSS for New Search Option Buttons (Updated) --- */
         .search-option-btn {
             padding: 6px 16px;
@@ -164,6 +159,18 @@
             50%, 80% { transform: rotateY(-180deg); }
             100% { transform: rotateY(-180deg); }
         }
+        #promptInput::placeholder {
+            white-space: normal;
+        }
+        
+        /* --- UPDATED: Responsive text rules --- */
+        .responsive-quote-text {
+            /* This makes the font size scale between a min, preferred, and max value */
+            font-size: clamp(1rem, 2.5vw, 1.6rem); 
+        }
+        .responsive-header-text {
+            font-size: clamp(1.875rem, 5vw, 3rem);
+        }
     </style>
 </head>
 <body class="font-sans bg-classic-cream min-h-screen flex flex-col">
@@ -176,7 +183,7 @@
                 <p class="typing-animation font-sans responsive-quote-text mb-4">
                     “A Book’s True Worth is Hidden in its Wisdom, <strong class="font-bold">NOT</strong> its Cover”
                 </p>
-                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-widest">
+                <h2 class="font-serif responsive-header-text font-bold uppercase tracking-widest">
                     Begin by Asking...
                 </h2>
             </div>
